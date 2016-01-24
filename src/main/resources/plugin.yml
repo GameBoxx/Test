@@ -1,0 +1,6 @@
+main : ${project.groupId}.test.Test
+name: Test
+version: ${project.version}
+description: ${project.description}
+author: ${project.author}
+depend: [GameBoxx]
