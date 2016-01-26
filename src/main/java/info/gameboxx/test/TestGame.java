@@ -25,6 +25,8 @@
 
 package info.gameboxx.test;
 
+import info.gameboxx.gameboxx.components.MaxPlayersCP;
+import info.gameboxx.gameboxx.components.MinPlayersCP;
 import info.gameboxx.gameboxx.components.PlayersCP;
 import info.gameboxx.gameboxx.game.Game;
 import info.gameboxx.gameboxx.game.GameSession;
@@ -45,5 +47,7 @@ public class TestGame extends Game {
     @Override
     public void addComponents() {
         addComponent(new PlayersCP(this));
+        addComponent(new MaxPlayersCP(this, 16));
+        addComponent(new MinPlayersCP(this, 4));
     }
 }

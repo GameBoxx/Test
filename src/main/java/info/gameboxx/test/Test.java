@@ -26,13 +26,11 @@
 package info.gameboxx.test;
 
 import info.gameboxx.gameboxx.GameBoxx;
-import info.gameboxx.gameboxx.exceptions.ArenaAlreadyExistsException;
-import info.gameboxx.gameboxx.exceptions.ComponentConflictException;
-import info.gameboxx.gameboxx.exceptions.DependencyNotFoundException;
-import info.gameboxx.gameboxx.exceptions.GameAlreadyExistsException;
+import info.gameboxx.gameboxx.exceptions.*;
 import info.gameboxx.gameboxx.game.ArenaType;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 public class Test extends JavaPlugin {
@@ -63,11 +61,15 @@ public class Test extends JavaPlugin {
             e.printStackTrace();
         } catch (DependencyNotFoundException e) {
             e.printStackTrace();
+        } catch (OptionAlreadyExistsException e) {
+            e.printStackTrace();
         }
 
         try {
             game.createArena(ArenaType.DEFAULT, "Test");
         } catch (ArenaAlreadyExistsException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
