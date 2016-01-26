@@ -36,8 +36,4 @@ public class TestSession extends GameSession {
         super(game, uid);
     }
 
-    @Override
-    public TestSession deepCopy() {
-        return this;
-    }
 }

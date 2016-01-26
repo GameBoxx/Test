@@ -25,7 +25,6 @@
 
 package info.gameboxx.test;
 
-import info.gameboxx.gameboxx.components.CountdownGC;
 import info.gameboxx.gameboxx.components.PlayersCP;
 import info.gameboxx.gameboxx.game.Game;
 import info.gameboxx.gameboxx.game.GameSession;
@@ -46,12 +45,5 @@ public class TestGame extends Game {
     @Override
     public void addComponents() {
         addComponent(new PlayersCP(this));
-        addComponent(new CountdownGC(this));
-    }
-
-
-    @Override
-    public TestGame deepCopy() {
-        return this;
     }
 }
