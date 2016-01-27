@@ -28,6 +28,7 @@ package info.gameboxx.test;
 import info.gameboxx.gameboxx.components.MaxPlayersCP;
 import info.gameboxx.gameboxx.components.MinPlayersCP;
 import info.gameboxx.gameboxx.components.PlayersCP;
+import info.gameboxx.gameboxx.game.Arena;
 import info.gameboxx.gameboxx.game.Game;
 import info.gameboxx.gameboxx.game.GameSession;
 
@@ -40,8 +41,8 @@ public class TestGame extends Game {
     }
 
     @Override
-    public GameSession getNewGameSession(UUID sessionUID) {
-        return new TestSession(this, sessionUID);
+    public GameSession getNewGameSession(Arena arena, UUID sessionUID) {
+        return new TestSession(this, arena, sessionUID);
     }
 
     @Override
