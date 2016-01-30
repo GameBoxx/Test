@@ -32,8 +32,6 @@ import info.gameboxx.gameboxx.game.Arena;
 import info.gameboxx.gameboxx.game.Game;
 import info.gameboxx.gameboxx.game.GameSession;
 
-import java.util.UUID;
-
 public class TestGame extends Game {
 
     public TestGame(Test test) {
@@ -41,8 +39,8 @@ public class TestGame extends Game {
     }
 
     @Override
-    public GameSession getNewGameSession(Arena arena, UUID sessionUID) {
-        return new TestSession(this, arena, sessionUID);
+    public GameSession getNewGameSession(Arena arena, int sessionID) {
+        return new TestSession(this, arena, sessionID);
     }
 
     @Override
