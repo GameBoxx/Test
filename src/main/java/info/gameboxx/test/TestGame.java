@@ -25,6 +25,7 @@
 
 package info.gameboxx.test;
 
+import info.gameboxx.gameboxx.components.CountdownCP;
 import info.gameboxx.gameboxx.components.MaxPlayersCP;
 import info.gameboxx.gameboxx.components.MinPlayersCP;
 import info.gameboxx.gameboxx.components.PlayersCP;
@@ -36,6 +37,11 @@ public class TestGame extends Game {
 
     public TestGame(Test test) {
         super(test, "Test");
+
+        addSetting("some.test.setting", true);
+        addSetting("some.other.setting", false);
+        addSetting("awesome", true);
+        addSetting("awesome-values", new String[] {"a", "b", "c"});
     }
 
     @Override
@@ -48,5 +54,6 @@ public class TestGame extends Game {
         addComponent(new PlayersCP(this));
         addComponent(new MaxPlayersCP(this, 16));
         addComponent(new MinPlayersCP(this, 4));
+        addComponent(new CountdownCP(this));
     }
 }
