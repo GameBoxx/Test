@@ -29,9 +29,14 @@ import info.gameboxx.gameboxx.components.CountdownCP;
 import info.gameboxx.gameboxx.components.MaxPlayersCP;
 import info.gameboxx.gameboxx.components.MinPlayersCP;
 import info.gameboxx.gameboxx.components.PlayersCP;
+import info.gameboxx.gameboxx.exceptions.OptionAlreadyExistsException;
 import info.gameboxx.gameboxx.game.Arena;
 import info.gameboxx.gameboxx.game.Game;
 import info.gameboxx.gameboxx.game.GameSession;
+import info.gameboxx.gameboxx.options.single.*;
+import info.gameboxx.gameboxx.util.Pair;
+
+import java.util.Arrays;
 
 public class TestGame extends Game {
 
@@ -42,6 +47,21 @@ public class TestGame extends Game {
         addSetting("some.other.setting", false);
         addSetting("awesome", true);
         addSetting("awesome-values", new String[] {"a", "b", "c"});
+    }
+
+    @Override
+    public void registerOptions() throws OptionAlreadyExistsException {
+        registerSetupOption(new LocationOption("TestLocation").setDescription("A test option for a location!"));
+        registerSetupOption(new BlockOption("TestBlock").setDescription("A test option for a block!"));
+        registerSetupOption(new WorldOption("TestWorld").setDescription("A test option for a world!"));
+        registerSetupOption(new PlayerOption("TestPlayer").setDescription("A test option for a player!"));
+        registerSetupOption(new StringOption("TestString1").setDescription("A test option for a string!"));
+        registerSetupOption(new StringOption("TestString2").match("a", "b", "c").setDescription("A test option for a string with list matches!"));
+        registerSetupOption(new StringOption("TestString3").match(new Pair("A", Arrays.asList("b", "c")), new Pair("D", Arrays.asList("e", "f"))).setDescription("A test option for a string with map matches!"));
+        registerSetupOption(new StringOption("TestString4").minChars(3).maxChars(10).setDescription("A test option for a string with min/max chars!"));
+        registerSetupOption(new IntOption("TestInt").setDescription("A test option for a int!"));
+        registerSetupOption(new IntOption("TestDouble").setDescription("A test option for a double!"));
+        registerSetupOption(new IntOption("TestBool").setDescription("A test option for a boolean!"));
     }
 
     @Override
