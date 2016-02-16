@@ -33,6 +33,10 @@ import info.gameboxx.gameboxx.exceptions.OptionAlreadyExistsException;
 import info.gameboxx.gameboxx.game.Arena;
 import info.gameboxx.gameboxx.game.Game;
 import info.gameboxx.gameboxx.game.GameSession;
+import info.gameboxx.gameboxx.options.list.BlockListOption;
+import info.gameboxx.gameboxx.options.list.CuboidListOption;
+import info.gameboxx.gameboxx.options.list.IntListOption;
+import info.gameboxx.gameboxx.options.list.StringListOption;
 import info.gameboxx.gameboxx.options.single.*;
 import info.gameboxx.gameboxx.util.Pair;
 
@@ -51,17 +55,25 @@ public class TestGame extends Game {
 
     @Override
     public void registerOptions() throws OptionAlreadyExistsException {
-        registerSetupOption(new LocationOption("TestLocation").setDescription("A test option for a location!"));
-        registerSetupOption(new BlockOption("TestBlock").setDescription("A test option for a block!"));
-        registerSetupOption(new WorldOption("TestWorld").setDescription("A test option for a world!"));
-        registerSetupOption(new PlayerOption("TestPlayer").setDescription("A test option for a player!"));
-        registerSetupOption(new StringOption("TestString1").setDescription("A test option for a string!"));
-        registerSetupOption(new StringOption("TestString2").match("a", "b", "c").setDescription("A test option for a string with list matches!"));
-        registerSetupOption(new StringOption("TestString3").match(new Pair("A", Arrays.asList("b", "c")), new Pair("D", Arrays.asList("e", "f"))).setDescription("A test option for a string with map matches!"));
-        registerSetupOption(new StringOption("TestString4").minChars(3).maxChars(10).setDescription("A test option for a string with min/max chars!"));
-        registerSetupOption(new IntOption("TestInt").setDescription("A test option for a int!"));
-        registerSetupOption(new IntOption("TestDouble").setDescription("A test option for a double!"));
-        registerSetupOption(new IntOption("TestBool").setDescription("A test option for a boolean!"));
+        registerSetupOption(new LocationOption("TestLocation"));
+        registerSetupOption(new BlockOption("TestBlock"));
+        registerSetupOption(new WorldOption("TestWorld"));
+        registerSetupOption(new PlayerOption("TestPlayer"));
+        registerSetupOption(new StringOption("TestString1"));
+        registerSetupOption(new StringOption("TestString2").match("a", "b", "c"));
+        registerSetupOption(new StringOption("TestString3").match(new Pair("A", Arrays.asList("b", "c")), new Pair("D", Arrays.asList("e", "f"))));
+        registerSetupOption(new StringOption("TestString4").minChars(3).maxChars(10));
+        registerSetupOption(new IntOption("TestInt"));
+        registerSetupOption(new IntOption("TestDouble"));
+        registerSetupOption(new IntOption("TestBool"));
+        registerSetupOption(new CuboidOption("TestCuboid"));
+        registerSetupOption(new VectorOption("TestVector"));
+        registerSetupOption(new MaterialOption("TestMaterial"));
+
+        registerSetupOption(new StringListOption("TestStrings"));
+        registerSetupOption(new IntListOption("TestInts"));
+        registerSetupOption(new BlockListOption("TestBlocks"));
+        registerSetupOption(new CuboidListOption("TestCuboids"));
     }
 
     @Override

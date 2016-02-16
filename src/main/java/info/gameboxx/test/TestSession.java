@@ -28,11 +28,20 @@ package info.gameboxx.test;
 import info.gameboxx.gameboxx.game.Arena;
 import info.gameboxx.gameboxx.game.Game;
 import info.gameboxx.gameboxx.game.GameSession;
+import info.gameboxx.gameboxx.util.Random;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 
 public class TestSession extends GameSession {
 
     public TestSession(Game game, Arena arena, int id) {
         super(game, arena, id);
+
+        getBlock("TestBlock").setType(Material.getMaterial(Random.Int(60)));
+
+        for (Block block : getBlockList("TestBlocks")) {
+            block.setType(Material.getMaterial(Random.Int(60)));
+        }
     }
 
 }
