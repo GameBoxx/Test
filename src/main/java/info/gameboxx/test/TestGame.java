@@ -29,7 +29,6 @@ import info.gameboxx.gameboxx.components.CountdownCP;
 import info.gameboxx.gameboxx.components.MaxPlayersCP;
 import info.gameboxx.gameboxx.components.MinPlayersCP;
 import info.gameboxx.gameboxx.components.PlayersCP;
-import info.gameboxx.gameboxx.exceptions.OptionAlreadyExistsException;
 import info.gameboxx.gameboxx.game.Arena;
 import info.gameboxx.gameboxx.game.Game;
 import info.gameboxx.gameboxx.game.GameSession;
@@ -39,6 +38,7 @@ import info.gameboxx.gameboxx.options.list.IntListOption;
 import info.gameboxx.gameboxx.options.list.StringListOption;
 import info.gameboxx.gameboxx.options.single.*;
 import info.gameboxx.gameboxx.util.Pair;
+import info.gameboxx.gameboxx.util.cuboid.Cuboid;
 
 import java.util.Arrays;
 
@@ -46,34 +46,34 @@ public class TestGame extends Game {
 
     public TestGame(Test test) {
         super(test, "Test");
-
-        addSetting("some.test.setting", true);
-        addSetting("some.other.setting", false);
-        addSetting("awesome", true);
-        addSetting("awesome-values", new String[] {"a", "b", "c"});
     }
 
     @Override
-    public void registerOptions() throws OptionAlreadyExistsException {
-        registerSetupOption(new LocationOption("TestLocation"));
-        registerSetupOption(new BlockOption("TestBlock"));
-        registerSetupOption(new WorldOption("TestWorld"));
-        registerSetupOption(new PlayerOption("TestPlayer"));
-        registerSetupOption(new StringOption("TestString1"));
-        registerSetupOption(new StringOption("TestString2").match("a", "b", "c"));
-        registerSetupOption(new StringOption("TestString3").match(new Pair("A", Arrays.asList("b", "c")), new Pair("D", Arrays.asList("e", "f"))));
-        registerSetupOption(new StringOption("TestString4").minChars(3).maxChars(10));
-        registerSetupOption(new IntOption("TestInt"));
-        registerSetupOption(new IntOption("TestDouble"));
-        registerSetupOption(new IntOption("TestBool"));
-        registerSetupOption(new CuboidOption("TestCuboid"));
-        registerSetupOption(new VectorOption("TestVector"));
-        registerSetupOption(new MaterialOption("TestMaterial"));
+    public void registerOptions() {
+        registerArenaOption("single.location", new LocationOption("TestLocation"));
+        registerArenaOption("single.block", new BlockOption("TestBlock"));
+        registerArenaOption("single.world", new WorldOption("TestWorld"));
+        registerArenaOption("single.player", new PlayerOption("TestPlayer"));
+        registerArenaOption("single.string.1", new StringOption("TestString1"));
+        registerArenaOption("single.string.2", new StringOption("TestString2").match("a", "b", "c"));
+        registerArenaOption("single.string.3", new StringOption("TestString3").match(new Pair("A", Arrays.asList("b", "c")), new Pair("D", Arrays.asList("e", "f"))));
+        registerArenaOption("single.string.4", new StringOption("TestString4").minChars(3).maxChars(10));
+        registerArenaOption("single.int", new IntOption("TestInt"));
+        registerArenaOption("single.double", new IntOption("TestDouble"));
+        registerArenaOption("single.bool", new IntOption("TestBool"));
+        registerArenaOption("single.cuboid", new CuboidOption("TestCuboid"));
+        registerArenaOption("single.vector", new VectorOption("TestVector"));
+        registerArenaOption("single.material", new MaterialOption("TestMaterial"));
 
-        registerSetupOption(new StringListOption("TestStrings"));
-        registerSetupOption(new IntListOption("TestInts"));
-        registerSetupOption(new BlockListOption("TestBlocks"));
-        registerSetupOption(new CuboidListOption("TestCuboids"));
+        registerArenaOption("list.string", new StringListOption("TestStrings"));
+        registerArenaOption("list.int", new IntListOption("TestInts"));
+        registerArenaOption("list.block", new BlockListOption("TestBlocks"));
+        registerArenaOption("list.cuboid", new CuboidListOption("TestCuboids"));
+
+        registerGameOption("some.test.setting", new BoolOption("test1", true));
+        registerGameOption("some.other.setting", new CuboidOption("test2", new Cuboid("world",0,0,0,0,0,0)));
+        registerGameOption("awesome", new CuboidOption("test3"));
+        registerGameOption("awesome-values", new IntListOption("test4", 4));
     }
 
     @Override
@@ -84,8 +84,8 @@ public class TestGame extends Game {
     @Override
     public void addComponents() {
         addComponent(new PlayersCP(this));
-        addComponent(new MaxPlayersCP(this, 16));
-        addComponent(new MinPlayersCP(this, 4));
+        addComponent(new MaxPlayersCP(this));
+        addComponent(new MinPlayersCP(this));
         addComponent(new CountdownCP(this));
     }
 }

@@ -37,9 +37,9 @@ public class TestSession extends GameSession {
     public TestSession(Game game, Arena arena, int id) {
         super(game, arena, id);
 
-        getBlock("TestBlock").setType(Material.getMaterial(Random.Int(60)));
+        getArenaOptions().getBlock("single.block", getWorld()).setType(Material.getMaterial(Random.Int(60)));
 
-        for (Block block : getBlockList("TestBlocks")) {
+        for (Block block : getArenaOptions().getBlockList("list.block", getWorld())) {
             block.setType(Material.getMaterial(Random.Int(60)));
         }
     }
