@@ -28,6 +28,8 @@ package info.gameboxx.test;
 import info.gameboxx.gameboxx.game.Arena;
 import info.gameboxx.gameboxx.game.Game;
 import info.gameboxx.gameboxx.game.GameSession;
+import info.gameboxx.gameboxx.options.list.BlockLO;
+import info.gameboxx.gameboxx.options.single.BlockO;
 import info.gameboxx.gameboxx.util.Random;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -37,9 +39,9 @@ public class TestSession extends GameSession {
     public TestSession(Game game, Arena arena, int id) {
         super(game, arena, id);
 
-        getArenaOptions().getBlock("single.block", getWorld()).setType(Material.getMaterial(Random.Int(60)));
+        getArenaOptions().<BlockO>getOption("single.block").getValue(getWorld()).setType(Material.getMaterial(Random.Int(60)));
 
-        for (Block block : getArenaOptions().getBlockList("list.block", getWorld())) {
+        for (Block block : getArenaOptions().<BlockLO>getOption("list.block").getValues(getWorld())) {
             block.setType(Material.getMaterial(Random.Int(60)));
         }
     }

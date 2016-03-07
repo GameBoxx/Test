@@ -25,20 +25,13 @@
 
 package info.gameboxx.test;
 
-import info.gameboxx.gameboxx.components.CountdownCP;
-import info.gameboxx.gameboxx.components.MaxPlayersCP;
-import info.gameboxx.gameboxx.components.MinPlayersCP;
-import info.gameboxx.gameboxx.components.PlayersCP;
+import info.gameboxx.gameboxx.components.*;
 import info.gameboxx.gameboxx.game.Arena;
 import info.gameboxx.gameboxx.game.Game;
 import info.gameboxx.gameboxx.game.GameSession;
-import info.gameboxx.gameboxx.options.list.BlockListOption;
-import info.gameboxx.gameboxx.options.list.CuboidListOption;
-import info.gameboxx.gameboxx.options.list.IntListOption;
-import info.gameboxx.gameboxx.options.list.StringListOption;
+import info.gameboxx.gameboxx.options.list.*;
 import info.gameboxx.gameboxx.options.single.*;
 import info.gameboxx.gameboxx.util.Pair;
-import info.gameboxx.gameboxx.util.cuboid.Cuboid;
 
 import java.util.Arrays;
 
@@ -50,30 +43,25 @@ public class TestGame extends Game {
 
     @Override
     public void registerOptions() {
-        registerArenaOption("single.location", new LocationOption("TestLocation"));
-        registerArenaOption("single.block", new BlockOption("TestBlock"));
-        registerArenaOption("single.world", new WorldOption("TestWorld"));
-        registerArenaOption("single.player", new PlayerOption("TestPlayer"));
-        registerArenaOption("single.string.1", new StringOption("TestString1"));
-        registerArenaOption("single.string.2", new StringOption("TestString2").match("a", "b", "c"));
-        registerArenaOption("single.string.3", new StringOption("TestString3").match(new Pair("A", Arrays.asList("b", "c")), new Pair("D", Arrays.asList("e", "f"))));
-        registerArenaOption("single.string.4", new StringOption("TestString4").minChars(3).maxChars(10));
-        registerArenaOption("single.int", new IntOption("TestInt"));
-        registerArenaOption("single.double", new IntOption("TestDouble"));
-        registerArenaOption("single.bool", new IntOption("TestBool"));
-        registerArenaOption("single.cuboid", new CuboidOption("TestCuboid"));
-        registerArenaOption("single.vector", new VectorOption("TestVector"));
-        registerArenaOption("single.material", new MaterialOption("TestMaterial"));
+        registerArenaOption("single.location", new LocationO());
+        registerArenaOption("single.block", new BlockO());
+        registerArenaOption("single.world", new WorldO());
+        registerArenaOption("single.player", new PlayerO());
+        registerArenaOption("single.string.1", new StringO());
+        registerArenaOption("single.string.2", new StringO().match("a", "b", "c"));
+        registerArenaOption("single.string.3", new StringO().match(new Pair("A", Arrays.asList("b", "c")), new Pair("D", Arrays.asList("e", "f"))));
+        registerArenaOption("single.string.4", new StringO().minChars(3).maxChars(10));
+        registerArenaOption("single.int", new IntO());
+        registerArenaOption("single.double", new IntO());
+        registerArenaOption("single.bool", new IntO());
+        registerArenaOption("single.cuboid", new CuboidO());
+        registerArenaOption("single.vector", new VectorO());
+        registerArenaOption("single.material", new MaterialO());
 
-        registerArenaOption("list.string", new StringListOption("TestStrings"));
-        registerArenaOption("list.int", new IntListOption("TestInts"));
-        registerArenaOption("list.block", new BlockListOption("TestBlocks"));
-        registerArenaOption("list.cuboid", new CuboidListOption("TestCuboids"));
-
-        registerGameOption("some.test.setting", new BoolOption("test1", true));
-        registerGameOption("some.other.setting", new CuboidOption("test2", new Cuboid("world",0,0,0,0,0,0)));
-        registerGameOption("awesome", new CuboidOption("test3"));
-        registerGameOption("awesome-values", new IntListOption("test4", 4));
+        registerArenaOption("list.string", new StringLO());
+        registerArenaOption("list.int", new IntLO());
+        registerArenaOption("list.block", new BlockLO());
+        registerArenaOption("list.cuboid", new CuboidLO());
     }
 
     @Override
